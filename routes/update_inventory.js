@@ -1,17 +1,17 @@
-// In update_inventory.js (or any other appropriate file name)
 import express from 'express';
 import connectToMongo from './db_connection.js';
 
 const router = express.Router();
 
-// Route to update availableInventory in Lessons collection
-router.put('/M00909858/update_inventory', async (req, res) => {
+// Route to update availableInventory in Lessons collection, where the id is passed as part of the URL
+router.put('/M00909858/update_inventory/:id', async (req, res) => {
   try {
-    const { id, availableInventory } = req.body;
+    const { id } = req.params; // Get the id from the URL
+    const { availableInventory } = req.body; // Get the new availableInventory from the request body
 
-    // Validate that both id and availableInventory are provided
-    if (id === undefined || availableInventory === undefined) {
-      return res.status(400).json({ error: 'Both id and availableInventory must be provided' });
+    // Validate that availableInventory is provided
+    if (availableInventory === undefined) {
+      return res.status(400).json({ error: 'availableInventory must be provided' });
     }
 
     // Connect to MongoDB
@@ -20,7 +20,7 @@ router.put('/M00909858/update_inventory', async (req, res) => {
 
     // Update the document with the specified id
     const result = await lessonsCollection.updateOne(
-      { id: id }, // Filter by the lesson's id field
+      { id: id }, // Filter by the lesson's id parameter
       { $set: { availableInventory: availableInventory } } // Update availableInventory
     );
 
