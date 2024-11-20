@@ -17,6 +17,8 @@
   // Import routes
   import lessonsRouter from './routes/lessons.js';
   import create_order from './routes/create_order.js';
+  import search_lessons from './routes/search_lessons.js';
+
   import update_inventory from './routes/update_inventory.js';
 
 
@@ -35,6 +37,7 @@
   app.use(lessonsRouter);
   app.use(create_order);
   app.use(update_inventory);
+  app.use(search_lessons);
 
 
   // Start the server

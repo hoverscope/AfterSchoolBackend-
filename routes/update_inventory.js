@@ -3,12 +3,12 @@ import connectToMongo from './db_connection.js';
 
 const router = express.Router();
 
-// Route to update availableInventory in Lessons collection, where the id is passed as part of the URL
+// Route to update availableInventory in Lessons collection
 router.put('/M00909858/update_inventory/:id', async (req, res) => {
   try {
     const { id } = req.params; // Get the id from the URL
     const { availableInventory } = req.body; 
-    const numericId = parseInt(id, 10); // Convert the id to a number (Int32)
+    const numericId = parseInt(id, 10); 
 
     console.log(`ID from URL: ${id}`); // Log the id received from the URL
 
