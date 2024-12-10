@@ -20,7 +20,7 @@
   app.use((req, res, next) => {
     if (req.originalUrl.startsWith('/public')) {
       console.error(`[Static File Error] File not found: ${req.originalUrl}`);
-      res.status(404).send('File not found');
+      res.status(404).send('Error 404 File Not Found');
     } else {
       next();
     }
