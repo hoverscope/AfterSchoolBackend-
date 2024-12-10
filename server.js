@@ -14,6 +14,17 @@
   app.use(express.static('public'));
 
 
+  app.use(express.static('public'));
+
+  // Middleware to log and handle missing static files in the 'public' directory
+  app.use((req, res, next) => {
+    if (req.originalUrl.startsWith('/')) {
+      console.error(`[Static File Error] File not found: ${req.originalUrl}`);
+      res.status(404).send('File not found');
+    }
+  });
+  
+
   // Import routes
   import lessonsRouter from './routes/lessons.js';
   import create_order from './routes/create_order.js';
