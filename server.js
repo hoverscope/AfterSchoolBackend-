@@ -15,6 +15,7 @@
 
 
 
+  //Error handling for staic files 
   // Middleware to log and handle missing static files in the 'public' directory
   app.use((req, res, next) => {
     if (req.originalUrl.startsWith('/public')) {
